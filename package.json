@@ -1,5 +1,5 @@
 {
-  "name": "DAZN",
+  "name": "dazn-coding-exercise",
   "version": "0.1.0",
   "description": "DAZN Coding Challenge",
   "main": "index.js",
@@ -7,10 +7,10 @@
   "author": "Lucian Lature <lucian.lature@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "babel js/ --out-dir dist/ && yarn run build-js",
-    "build-js": "browserify dist/app.js -o dist/app.js",
+    "build": "babel js/ --out-dir dist/",
+    "build-js": "yarn build && browserify dist/app.js -o dist/app.js",
     "build-run": "yarn run build-js && http-server -c-1",
-    "lint": "eslint src/app.js"
+    "lint": "eslint js/app.js"
   },
   "devDependencies": {
     "babel-cli": "6.24.1",

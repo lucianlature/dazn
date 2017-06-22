@@ -1,11 +1,28 @@
 import { $on } from './utils'
-import Connector from './connector'
+import ApiClient from './ApiClient'
 import MovieRowTemplate from './MovieRowTemplate'
 import AppView from './AppView'
 
+const IMAGES_URI = 'http://image.tmdb.org/t/p/'
+const API_KEY = '1aee93b115858a448cb83ef53b33f6fa'
+const BASE_URI = `http://api.themoviedb.org/3/search/movie?api_key=${API_KEY}`
+
+const apiClient = new ApiClient({
+    BASE_URI,
+    IMAGES_URI,
+})
 const template = new MovieRowTemplate()
 const view = new AppView(template)
 
+// init the app
 $on(window, 'load', () => {
-    // start the app
+    view.onSearch(async searchTerm => {
+        let response
+        try {
+            response = await apiClient.fetch({ searchTerm })
+        } catch (err) {
+            console.error(err)
+        }
+        view.showMovies(response.results)
+    })
 })

@@ -17,7 +17,6 @@ export default class MovieRowTemplate {
 		return movies.reduce((a, movie) => a + `
             <li data-id="${movie.id}">
                 <label>${escapeForHTML(movie.title)}</label>
-				<img src="${movie.image}" />
             </li>`, '')
 	}
 }

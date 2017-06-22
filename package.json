@@ -1,0 +1,9 @@
+{
+  "name": "DAZN",
+  "version": "0.1.0",
+  "description": "DAZN Coding Challenge",
+  "main": "index.js",
+  "repository": "https://github.com/lucianlature/dazn.git",
+  "author": "Lucian Lature <lucian.lature@gmail.com>",
+  "license": "MIT"
+}

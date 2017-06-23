@@ -1,3 +1,6 @@
+import 'babel-core/register'
+import 'babel-polyfill'
+
 import { $on } from './utils'
 import ApiClient from './ApiClient'
 import MovieRowTemplate from './MovieRowTemplate'
@@ -20,11 +23,10 @@ $on(window, 'load', () => {
         let response
         try {
             response = await apiClient.fetch({ searchTerm })
+            const movies = response.results
+            view.showMovies(movies)
         } catch (err) {
             console.error(err)
         }
-
-        const movies = response.results
-        view.showMovies(movies)
     })
 })

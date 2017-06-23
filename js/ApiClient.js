@@ -16,7 +16,14 @@ export default class ApiClient {
                 "Content-Type": "application/json"
             },
         })
-        return response.json()
+        
+        return response.json().then(data => {
+            data.results.forEach(item => {
+                item.image = this.getImage({ size: 'w500', file: item.poster_path })
+            })
+
+            return data
+        })
     }
 
     getImage(options) {

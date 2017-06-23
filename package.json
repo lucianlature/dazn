@@ -7,11 +7,9 @@
   "author": "Lucian Lature <lucian.lature@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "babel js/ --out-dir dist/",
-    "build-js": "yarn build && browserify dist/app.js -o dist/app.js",
-    "build-run": "yarn run build-js && http-server -c-1",
+    "start": "npm run build && http-server -c-1",
+    "build": "browserify -t [ babelify --presets [ es2015 stage-0] ] js/app.js -o dist/app.js",
     "test": "mocha --compilers js:babel-core/register --require jsdom-global/register",
-    "test:watch": "mocha --compilers js:babel-register --require jsdom-global/register --reporter min --watch",
     "lint": "eslint js/app.js"
   },
   "devDependencies": {
@@ -28,6 +26,7 @@
     "jsdom": "11.0.0",
     "jsdom-global": "3.0.2",
     "mocha": "3.4.2",
+    "now": "7.0.2",
     "proxyquire": "1.8.0",
     "proxyquire-universal": "1.0.8",
     "proxyquireify": "3.2.1",
@@ -35,6 +34,7 @@
   },
   "dependencies": {
     "animate.css": "3.5.2",
+    "http-server": "0.10.0",
     "whatwg-fetch": "2.0.3"
   }
 }

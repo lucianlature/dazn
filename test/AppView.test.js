@@ -1,3 +1,6 @@
+import 'babel-core/register'
+import 'babel-polyfill'
+
 import proxyquire from 'proxyquire'
 import sinon from 'sinon'
 import { assert, expect } from 'chai'
@@ -20,7 +23,6 @@ const AppView = proxyAppView.default
 describe('AppView Tests', () => {
   let view, template, sandbox, $onMock, qsMock
   beforeEach(function () {
-    this.jsdom = require('jsdom-global')()
     sandbox = sinon.sandbox.create()
     
     const moviesList = sandbox.stub()
@@ -33,7 +35,6 @@ describe('AppView Tests', () => {
 
   afterEach(function () {
     sandbox.restore()
-    this.jsdom()
   })
 
   describe('When the list of movies is empty', () => {

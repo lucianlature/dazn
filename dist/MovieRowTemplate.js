@@ -32,7 +32,7 @@ var MovieRowTemplate = function () {
    */
 		value: function moviesList(movies) {
 			return movies.reduce(function (a, movie) {
-				return a + ('\n            <li data-id="' + movie.id + '" class="animated fadeInRight">\n\t\t\t\t<label>' + (0, _utils.escapeForHTML)(movie.title) + '</label>\n                <img className="center-block img-responsive" width="120px" height="160px" src="' + movie.image + '" />\n\t\t\t\t<div class="overview">\n\t\t\t\t\t<span><strong>Release Date:</strong>' + movie.release_date + '</span>\n\t\t\t\t\t<p>' + movie.overview + '<p>\n\t\t\t\t</div>\n            </li>');
+				return a + ('\n<li data-id="' + movie.id + '" class="animated fadeInRight">\n  <label>' + (0, _utils.escapeForHTML)(movie.title) + '</label>\n  <img class="center-block img-responsive" width="120px" height="160px" src="' + movie.image + '" />\n  <div class="overview">\n    <span><strong>Release Date: </strong>' + movie.release_date + '</span>\n    <p>' + movie.overview + '<p>\n  </div>\n</li>');
 			}, '');
 		}
 	}]);

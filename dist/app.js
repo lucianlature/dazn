@@ -31,7 +31,7 @@ var ApiClient = function () {
                 var _this = this;
 
                 var searchTerm = _ref3.searchTerm;
-                var query, response;
+                var query, response, data;
                 return regeneratorRuntime.wrap(function _callee$(_context) {
                     while (1) {
                         switch (_context.prev = _context.next) {
@@ -46,15 +46,19 @@ var ApiClient = function () {
 
                             case 3:
                                 response = _context.sent;
-                                return _context.abrupt("return", response.json().then(function (data) {
-                                    data.results.forEach(function (item) {
-                                        item.image = _this.getImage({ size: 'w500', file: item.poster_path });
-                                    });
+                                _context.next = 6;
+                                return response.json();
 
-                                    return data;
-                                }));
+                            case 6:
+                                data = _context.sent;
 
-                            case 5:
+                                data.results.forEach(function (item) {
+                                    item.image = _this.getImage({ size: 'w500', file: item.poster_path });
+                                });
+
+                                return _context.abrupt("return", data);
+
+                            case 9:
                             case "end":
                                 return _context.stop();
                         }
@@ -79,6 +83,7 @@ var ApiClient = function () {
 }();
 
 exports.default = ApiClient;
+
 },{"whatwg-fetch":304}],2:[function(require,module,exports){
 'use strict';
 
@@ -150,6 +155,7 @@ var AppView = function () {
 }();
 
 exports.default = AppView;
+
 },{"./utils":5}],3:[function(require,module,exports){
 'use strict';
 
@@ -185,7 +191,7 @@ var MovieRowTemplate = function () {
    */
 		value: function moviesList(movies) {
 			return movies.reduce(function (a, movie) {
-				return a + ('\n            <li data-id="' + movie.id + '" class="animated fadeInRight">\n\t\t\t\t<label>' + (0, _utils.escapeForHTML)(movie.title) + '</label>\n                <img className="center-block img-responsive" width="120px" height="160px" src="' + movie.image + '" />\n\t\t\t\t<div class="overview">\n\t\t\t\t\t<span><strong>Release Date:</strong>' + movie.release_date + '</span>\n\t\t\t\t\t<p>' + movie.overview + '<p>\n\t\t\t\t</div>\n            </li>');
+				return a + ('\n<li data-id="' + movie.id + '" class="animated fadeInRight">\n  <label>' + (0, _utils.escapeForHTML)(movie.title) + '</label>\n  <img class="center-block img-responsive" width="120px" height="160px" src="' + movie.image + '" />\n  <div class="overview">\n    <span><strong>Release Date: </strong>' + movie.release_date + '</span>\n    <p>' + movie.overview + '<p>\n  </div>\n</li>');
 			}, '');
 		}
 	}]);
@@ -194,6 +200,7 @@ var MovieRowTemplate = function () {
 }();
 
 exports.default = MovieRowTemplate;
+
 },{"./utils":5}],4:[function(require,module,exports){
 'use strict';
 
@@ -271,6 +278,7 @@ var view = new _AppView2.default(template);
         };
     }());
 });
+
 },{"./ApiClient":1,"./AppView":2,"./MovieRowTemplate":3,"./utils":5,"babel-core/register":6,"babel-polyfill":7}],5:[function(require,module,exports){
 'use strict';
 
@@ -312,6 +320,7 @@ var escapeForHTML = exports.escapeForHTML = function escapeForHTML(s) {
     return c === '&' ? '&amp;' : '&lt;';
   });
 };
+
 },{}],6:[function(require,module,exports){
 /* eslint max-len: 0 */
 // TODO: eventually deprecate this console.trace("use the `babel-register` package instead of `babel-core/register`");

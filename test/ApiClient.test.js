@@ -1,3 +1,6 @@
+import 'babel-core/register'
+import 'babel-polyfill'
+
 import sinon from 'sinon'
 import { assert, expect } from 'chai'
 import ApiClient from '../js/ApiClient'
@@ -9,7 +12,9 @@ describe('ApiClient Tests', () => {
   beforeEach(() => {
     sandbox = sinon.sandbox.create()
     spyFetch = sandbox.stub(window, 'fetch').returns({
-        json: () => ({ test: 'API' })
+        json: () => Promise.resolve({
+          results: [{ poster_path: 'hello' }]
+        })
     })
     client = new ApiClient({ BASE_URI: 'BASE_URI', IMAGES_URI: 'IMAGES_URI' })
   })
@@ -25,7 +30,7 @@ describe('ApiClient Tests', () => {
         .then(json => {
             expect(spyFetch.calledOnce).to.be.true
             expect(spyFetch.calledWith(query)).to.be.true
-            expect(json).to.deep.equal({ test: 'API' })
+            expect(json).to.deep.equal({ results: [ { poster_path: 'hello', image: 'IMAGES_URIw500/hello' } ] })
 
             done()
         })

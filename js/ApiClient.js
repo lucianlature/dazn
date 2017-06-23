@@ -17,13 +17,12 @@ export default class ApiClient {
             },
         })
         
-        return response.json().then(data => {
-            data.results.forEach(item => {
-                item.image = this.getImage({ size: 'w500', file: item.poster_path })
-            })
-
-            return data
+        const data = await response.json()
+        data.results.forEach(item => {
+            item.image = this.getImage({ size: 'w500', file: item.poster_path })
         })
+
+        return data
     }
 
     getImage(options) {

@@ -1,3 +1,6 @@
+import 'babel-core/register'
+import 'babel-polyfill'
+
 import sinon from 'sinon'
 import { assert, expect } from 'chai'
 import { qs, $on, escapeForHTML } from '../js/utils'

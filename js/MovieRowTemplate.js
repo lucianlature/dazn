@@ -15,13 +15,13 @@ export default class MovieRowTemplate {
 	 */
 	moviesList(movies) {
 		return movies.reduce((a, movie) => a + `
-            <li data-id="${movie.id}" class="animated fadeInRight">
-				<label>${escapeForHTML(movie.title)}</label>
-                <img className="center-block img-responsive" width="120px" height="160px" src="${movie.image}" />
-				<div class="overview">
-					<span><strong>Release Date: </strong>${movie.release_date}</span>
-					<p>${movie.overview}<p>
-				</div>
-            </li>`, '')
+<li data-id="${movie.id}" class="animated fadeInRight">
+  <label>${escapeForHTML(movie.title)}</label>
+  <img class="center-block img-responsive" width="120px" height="160px" src="${movie.image}" />
+  <div class="overview">
+    <span><strong>Release Date: </strong>${movie.release_date}</span>
+    <p>${movie.overview}<p>
+  </div>
+</li>`, '')
 	}
 }

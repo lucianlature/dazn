@@ -30,7 +30,7 @@ var ApiClient = function () {
                 var _this = this;
 
                 var searchTerm = _ref3.searchTerm;
-                var query, response;
+                var query, response, data;
                 return regeneratorRuntime.wrap(function _callee$(_context) {
                     while (1) {
                         switch (_context.prev = _context.next) {
@@ -45,15 +45,19 @@ var ApiClient = function () {
 
                             case 3:
                                 response = _context.sent;
-                                return _context.abrupt("return", response.json().then(function (data) {
-                                    data.results.forEach(function (item) {
-                                        item.image = _this.getImage({ size: 'w500', file: item.poster_path });
-                                    });
+                                _context.next = 6;
+                                return response.json();
 
-                                    return data;
-                                }));
+                            case 6:
+                                data = _context.sent;
 
-                            case 5:
+                                data.results.forEach(function (item) {
+                                    item.image = _this.getImage({ size: 'w500', file: item.poster_path });
+                                });
+
+                                return _context.abrupt("return", data);
+
+                            case 9:
                             case "end":
                                 return _context.stop();
                         }

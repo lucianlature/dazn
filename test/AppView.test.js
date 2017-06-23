@@ -71,4 +71,4 @@ describe('AppView Tests', () => {
       expect(view.$main.style.display).to.equal('block')
     })
   })
-});
+})

@@ -1,7 +1,5 @@
-import { qs, $on } from './utils' 
-import MovieRowTemplate from './MovieRowTemplate'
+import { qs, $on } from './utils'
 
-const bindParams = params => cb => cb(params)
 export default class AppView {
     constructor(template) {
         this.template = template

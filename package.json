@@ -10,6 +10,8 @@
     "build": "babel js/ --out-dir dist/",
     "build-js": "yarn build && browserify dist/app.js -o dist/app.js",
     "build-run": "yarn run build-js && http-server -c-1",
+    "test": "mocha --compilers js:babel-core/register --require jsdom-global/register",
+    "test:watch": "mocha --compilers js:babel-register --require jsdom-global/register --reporter min --watch",
     "lint": "eslint js/app.js"
   },
   "devDependencies": {
@@ -21,7 +23,12 @@
     "browserify": "14.4.0",
     "chai": "4.0.2",
     "eslint": "4.0.0",
+    "jsdom": "11.0.0",
+    "jsdom-global": "3.0.2",
     "mocha": "3.4.2",
+    "proxyquire": "1.8.0",
+    "proxyquire-universal": "1.0.8",
+    "proxyquireify": "3.2.1",
     "sinon": "2.3.5"
   },
   "dependencies": {

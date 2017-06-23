@@ -14,7 +14,7 @@ const apiClient = new ApiClient({
 const template = new MovieRowTemplate()
 const view = new AppView(template)
 
-// init the app
+// initialize the app
 $on(window, 'load', () => {
     view.onSearch(async searchTerm => {
         let response
@@ -23,6 +23,8 @@ $on(window, 'load', () => {
         } catch (err) {
             console.error(err)
         }
-        view.showMovies(response.results)
+
+        const movies = response.results
+        view.showMovies(movies)
     })
 })

@@ -6,12 +6,12 @@ export default class ApiClient {
         IMAGES_URI,
     }) {
         this.base_uri = BASE_URI
-        this.images_uri = BASE_URI
+        this.images_uri = IMAGES_URI
     }
 
     async fetch({ searchTerm }) {
         const query = `${this.base_uri}&query=${searchTerm}`
-        const response = await fetch(query, {
+        const response = await window.fetch(query, {
             headers: {
                 "Content-Type": "application/json"
             },
